@@ -1,0 +1,13 @@
+{
+  "name": "policylens",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev:console": "npm run start -w apps/console",
+    "dev:assistant": "npm run dev -w apps/assistant",
+    "test:console": "npm run test -w apps/console",
+    "test:assistant": "npm run test -w apps/assistant",
+    "build:console": "npm run build -w apps/console",
+    "build:assistant": "npm run build -w apps/assistant"
+  }
+}
