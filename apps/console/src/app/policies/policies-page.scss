@@ -9,3 +9,21 @@ td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+
+.state {
+  padding: 1rem 0;
+}
+
+.skeleton-row {
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  background: #e5e5e5;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}

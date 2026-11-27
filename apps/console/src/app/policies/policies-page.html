@@ -1,22 +1,37 @@
 <h2>Policies</h2>
 
-@if (policies.hasValue()) {
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Uploaded</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (policy of policies.value(); track policy.id) {
+@if (policies.error()) {
+  <div class="state" role="alert">
+    <p>Could not load policies. Check your connection and try again.</p>
+    <button type="button" (click)="policies.reload()">Retry</button>
+  </div>
+} @else if (policies.hasValue()) {
+  @if (policies.value().length === 0) {
+    <p class="state">No policies yet.</p>
+  } @else {
+    <table>
+      <thead>
         <tr>
-          <td>{{ policy.name }}</td>
-          <td>{{ policy.created_at | date: 'medium' }}</td>
-          <td>{{ policy.status }}</td>
+          <th scope="col">Name</th>
+          <th scope="col">Uploaded</th>
+          <th scope="col">Status</th>
         </tr>
-      }
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        @for (policy of policies.value(); track policy.id) {
+          <tr>
+            <td>{{ policy.name }}</td>
+            <td>{{ policy.created_at | date: 'medium' }}</td>
+            <td>{{ policy.status }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+} @else {
+  <div class="skeleton" role="status" aria-busy="true" aria-label="Loading policies">
+    @for (row of [1, 2, 3]; track row) {
+      <div class="skeleton-row"></div>
+    }
+  </div>
 }
