@@ -1,0 +1,22 @@
+<h2>Policies</h2>
+
+@if (policies.hasValue()) {
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Uploaded</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (policy of policies.value(); track policy.id) {
+        <tr>
+          <td>{{ policy.name }}</td>
+          <td>{{ policy.created_at | date: 'medium' }}</td>
+          <td>{{ policy.status }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

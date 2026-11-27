@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { PoliciesService } from './policies.service';
 
 @Component({
   selector: 'app-policies-page',
+  imports: [DatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<h2>Policies</h2>`,
+  templateUrl: './policies-page.html',
+  styleUrl: './policies-page.scss',
 })
-export class PoliciesPage {}
+export class PoliciesPage {
+  protected readonly policies = inject(PoliciesService).listPolicies;
+}
